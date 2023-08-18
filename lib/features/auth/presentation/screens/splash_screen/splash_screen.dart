@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
           context,
           MaterialPageRoute(
               builder: (_) =>
-                  isVisited ? OnBoardingScreen1() : const HomeScreen()));
+                  isVisited ? const HomeScreen() : OnBoardingScreen1()));
     });
   }
 

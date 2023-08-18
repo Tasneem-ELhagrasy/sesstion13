@@ -4,12 +4,14 @@ import 'package:sesstion13/features/task/presentation/features/task/presentation
 
 import 'app/app.dart';
 import 'core/database/cache/cash_helper.dart';
+import 'core/database/sqfite_helper/sqflite_helper.dart';
 import 'core/services/service_locator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setup();
   await sl<CacheHelper>().init();
+  sl<SqfliteHelper>().intDB();
   runApp(BlocProvider(
     create: (context) => TaskCubit(),
     child: const MyApp(),
