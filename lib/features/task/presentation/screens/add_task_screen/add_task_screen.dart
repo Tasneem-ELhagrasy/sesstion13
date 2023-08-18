@@ -92,7 +92,7 @@ class AddTaskScreen extends StatelessWidget {
                               suffixicon: IconButton(
                                   onPressed: () async {
                                     BlocProvider.of<TaskCubit>(context)
-                                        .getDate(context);
+                                        .getStartTime(context);
                                   },
                                   icon: const Icon(
                                     Icons.alarm_outlined,
@@ -111,16 +111,8 @@ class AddTaskScreen extends StatelessWidget {
                                   BlocProvider.of<TaskCubit>(context).endTime,
                               suffixicon: IconButton(
                                   onPressed: () async {
-                                    // ignore: unused_local_variable
-                                    // TimeOfDay? pickedendTime =
-                                    //     await showTimePicker(
-                                    //         context: context,
-                                    //         initialTime: TimeOfDay.fromDateTime(
-                                    //             DateTime.now()));
-                                    // setState(() {
-                                    //   startTime =
-                                    //       pickedendTime!.format(context);
-                                    // });
+                                    BlocProvider.of<TaskCubit>(context)
+                                        .getEndTime(context);
                                   },
                                   icon: const Icon(
                                     Icons.alarm_outlined,
@@ -154,35 +146,18 @@ class AddTaskScreen extends StatelessWidget {
                                   scrollDirection: Axis.horizontal,
                                   itemCount: 6,
                                   itemBuilder: (context, index) {
-                                    Color getColor(index) {
-                                      switch (index) {
-                                        case 0:
-                                          return AppColors.red;
-                                        case 1:
-                                          return AppColors.green;
-                                        case 2:
-                                          return AppColors.bluegrey;
-                                        case 3:
-                                          return AppColors.sky;
-                                        case 4:
-                                          return AppColors.orange;
-                                        case 5:
-                                          return AppColors.pink;
-                                        default:
-                                          return AppColors.deepgray;
-                                      }
-                                    }
-
                                     return Padding(
                                       padding: const EdgeInsets.only(right: 16),
                                       child: GestureDetector(
                                         onTap: () {
-                                          // setState(() {
-                                          //   currentindex = index;
-                                          // });
+                                          BlocProvider.of<TaskCubit>(context)
+                                              .changeCkeckMarkIndex(index);
                                         },
                                         child: CircleAvatar(
-                                          backgroundColor: getColor(index),
+                                          backgroundColor:
+                                              BlocProvider.of<TaskCubit>(
+                                                      context)
+                                                  .getColor(index),
                                           child: index ==
                                                   BlocProvider.of<TaskCubit>(
                                                           context)
