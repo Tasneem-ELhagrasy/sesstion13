@@ -4,7 +4,7 @@ import 'package:sqflite/sqflite.dart';
 class SqfliteHelper {
   late Database db;
   void intDB() async {
-    await openDatabase(
+    db = await openDatabase(
       'tasks.db',
       version: 1,
       onCreate: (Database db, int v) async {
@@ -12,12 +12,12 @@ class SqfliteHelper {
 CREATE TABLE Tasks(
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   title TEXT,
-  notes TEXT,
+  note TEXT,
   date TEXT,
   starttime TEXT,
   endtime TEXT,
   color INTEGER,
-  completed INTEGER)
+  isCompleted INTEGER)
 
             ''').then((value) => print('DB created successfully'));
       },
@@ -28,7 +28,7 @@ CREATE TABLE Tasks(
   }
 
   Future<List<Map<String, dynamic>>> getFromDB() async {
-    return await db.rawQuery('select * from Test');
+    return await db.rawQuery('select * from Tasks');
   }
 
   Future<int> insertToDB(TaskModel model) async {
